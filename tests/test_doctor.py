@@ -21,8 +21,8 @@ def test_later_tools_do_not_block_session_one(
 
     assert doctor.main() == 0
     output = capsys.readouterr().out
-    assert "[later] GitHub CLI authentication (required by Session 3)" in output
-    assert "[later] Ollama (required by Session 6)" in output
+    assert "[later] GitHub CLI authentication (needed for guarded merging)" in output
+    assert "[later] Ollama (needed for local model work)" in output
     assert "Core environment is ready." in output
 
 

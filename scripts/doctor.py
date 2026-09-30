@@ -29,8 +29,12 @@ def main() -> int:
         (".env", Path(".env").is_file()),
     ]
     later_checks = [
-        ("GitHub CLI authentication", 3, command_succeeds(["gh", "auth", "status"])),
-        ("Ollama", 6, command_succeeds(["ollama", "--version"])),
+        (
+            "GitHub CLI authentication",
+            "guarded merging",
+            command_succeeds(["gh", "auth", "status"]),
+        ),
+        ("Ollama", "local model work", command_succeeds(["ollama", "--version"])),
     ]
 
     failed = False
@@ -39,9 +43,9 @@ def main() -> int:
         print(f"[{status}] {name}")
         failed = failed or not passed
 
-    for name, session, passed in later_checks:
+    for name, milestone, passed in later_checks:
         status = "ok" if passed else "later"
-        print(f"[{status}] {name} (required by Session {session})")
+        print(f"[{status}] {name} (needed for {milestone})")
 
     if failed:
         print("Resolve missing core requirements before Session 1.")

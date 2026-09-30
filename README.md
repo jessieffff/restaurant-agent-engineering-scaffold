@@ -1,8 +1,9 @@
 # Restaurant AI Backend Scaffold
 
 Start the Restaurant AI Agent Backend project with a working FastAPI service,
-automated quality checks, local data-service definitions, GitHub workflow
-templates, and an engineering documentation structure.
+a responsive Juniper & Stone restaurant website, automated quality checks,
+local data-service definitions, GitHub workflow templates, and an engineering
+documentation structure.
 
 ## Create your private implementation repository
 
@@ -36,9 +37,10 @@ Requirements:
 - Docker with Docker Compose
 - GNU Make
 
-GitHub CLI authentication is required by Session 3 for the merge guard. Ollama
-is required by Session 6 for local model work. `make doctor` reports both as
-later requirements without blocking the initial setup.
+GitHub CLI authentication is needed for guarded merging. Ollama is needed when
+you reach the local model gateway. `make doctor` reports both as later
+requirements without blocking the initial setup; follow your course schedule
+for their exact session.
 
 Prepare the local environment:
 
@@ -51,7 +53,7 @@ make check
 In the generated GitHub repository, open **Actions → quality → Run workflow**
 and confirm the first quality run passes.
 
-Start only the API during early development:
+Start the restaurant website and API during early development:
 
 ```bash
 make run
@@ -59,9 +61,15 @@ make run
 
 Open:
 
+- Restaurant website: <http://127.0.0.1:8000/>
 - API documentation: <http://127.0.0.1:8000/docs>
 - Liveness: <http://127.0.0.1:8000/health/live>
 - Readiness: <http://127.0.0.1:8000/health/ready>
+
+The website presents a fictional restaurant's menu, hours, reservation form,
+and Ask Juniper chat interface. Reservation submission and chat sending remain
+inactive until you connect the corresponding backend and Agent workflows.
+Neither control returns a simulated booking or a scripted Agent reply.
 
 Start the local service stack:
 
@@ -86,6 +94,8 @@ Do not reuse them outside the local environment.
 ## What is included
 
 - FastAPI application factory
+- Responsive restaurant website with original, locally served illustration,
+  sample menu and hours, reservation-form shell, and accessible chat dialog
 - Liveness and application-level readiness endpoints
 - Pydantic settings loaded from environment variables
 - Unit tests
@@ -104,6 +114,7 @@ Do not reuse them outside the local environment.
 | Foundation | Purpose |
 |---|---|
 | Runnable FastAPI service | Verifies the Python environment and provides the first executable vertical slice |
+| Restaurant website starter | Makes the final customer journey visible from day one without implementing Agent or booking behavior for you |
 | Quality checks and CI | Establishes one repeatable lint, type, test, and evidence workflow |
 | Local data services | Provides the PostgreSQL, vector, cache, and messaging systems used across later sessions |
 | GitHub templates and merge guard | Standardizes task delivery and provides a zero-cost controlled merge path |
@@ -112,6 +123,8 @@ Do not reuse them outside the local environment.
 ## What you build during the course
 
 - Versioned customer, staff, and agent APIs
+- API-backed restaurant details and a real customer journey through the
+  website: Agent chat, reservation confirmation, takeout, and handoff
 - PostgreSQL schema, migrations, constraints, indexes, and transactions
 - Dependency-aware readiness for PostgreSQL, Valkey, and RabbitMQ
 - Reservation and ordering domains
@@ -139,16 +152,30 @@ Do not reuse them outside the local environment.
 │   ├── domain/              Reservation, ordering, and restaurant rules
 │   ├── platform/            Database, cache, broker, model, and telemetry adapters
 │   ├── rag/                 Ingestion, retrieval, citations, and evaluation
+│   ├── web/                 Restaurant page, styles, script, and original illustration
 │   └── worker/              Relay and asynchronous workers
 └── tests/                   Automated tests
 ```
+
+## Grow the website with the system
+
+- First, use the sample menu and hours as static starter content. Move them
+  into versioned structured data and replace the page content with API
+  responses when you implement restaurant information services.
+- Connect the reservation form only after the backend supports availability,
+  prepare, a visible summary, later explicit confirmation, and a safe write.
+- Connect Ask Juniper to the actual Agent runtime and typed tools. Use the
+  policy knowledge pipeline for cited answers, then add the takeout workflow.
+- In the capstone, start from the website and demonstrate a complete synthetic
+  customer journey. Preserve the accessible dialog and failure states as the
+  UI evolves. A public domain is optional; the local zero-cost path is required.
 
 ## First project task
 
 After setup:
 
 1. Run `make check`.
-2. Open the generated API documentation.
+2. Open the restaurant website and API documentation.
 3. Read `CONTRIBUTING.md`.
 4. Create the first Task Issue.
 5. Create a short-lived branch from `main`.
@@ -177,6 +204,8 @@ commit, squash-merges, and deletes the source branch.
 ## Safety
 
 - Use synthetic data only.
+- Keep unimplemented website actions inactive; never present a placeholder as
+  a completed reservation or a live Agent response.
 - Never commit `.env`, credentials, access tokens, private keys, or real PII.
 - Keep deterministic tests independent from hosted model availability.
 - Keep every required workflow on a zero-payment path.
