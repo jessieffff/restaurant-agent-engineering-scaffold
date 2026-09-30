@@ -8,7 +8,7 @@ Store durable project knowledge in this directory.
 | `adr/` | Architecture decision records |
 | `api/` | API conventions, examples, and compatibility notes |
 | `events/` | Event envelopes, schemas, routing, and evolution |
-| `evaluations/` | Agent and RAG datasets, methods, scores, and failure analysis |
+| `evaluations/` | Agent, Skill, and RAG datasets, methods, scores, and failure analysis |
 | `performance/` | Load-test methods, environments, results, and optimizations |
 | `runbooks/` | Detection, diagnosis, mitigation, recovery, and verification steps |
 | `incidents/` | Incident timelines, impact, root cause, and actions |

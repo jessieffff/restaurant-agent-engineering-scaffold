@@ -131,6 +131,8 @@ Do not reuse them outside the local environment.
 - Idempotency and concurrency controls
 - Valkey caching and rate limiting
 - LangGraph workflows, model gateway, typed tools, and confirmation safety
+- Student-authored, versioned task Skills for reservations, policy answers, and
+  takeout: `SKILL.md` playbooks selected on demand by an Agent-side registry
 - RAG ingestion, retrieval, citations, isolation, and evaluation
 - RabbitMQ topology, outbox relay, workers, retries, and dead letters
 - Authentication, authorization, audit, and PII controls
@@ -147,6 +149,7 @@ Do not reuse them outside the local environment.
 ├── scripts/                 Bootstrap and environment checks
 ├── src/restaurant_agent/
 │   ├── agent/               LangGraph workflow added during the course
+│   │   └── skills/           Student-authored SKILL.md files added during the course
 │   ├── api/                 FastAPI routes
 │   ├── core/                Configuration and cross-cutting application setup
 │   ├── domain/              Reservation, ordering, and restaurant rules
@@ -156,6 +159,15 @@ Do not reuse them outside the local environment.
 │   └── worker/              Relay and asynchronous workers
 └── tests/                   Automated tests
 ```
+
+The template does not include completed Skills. During the course, put
+`reservation`, `restaurant-policy`, and `takeout` under
+`src/restaurant_agent/agent/skills/` so they can ship with the Python
+package and container. Each Skill describes when and how to complete a task;
+it does **not** grant tool permissions or contain restaurant-specific prices
+and unreviewed policies. The Agent must use server-enforced typed tools for
+reads and writes, keep explicit confirmation for writes, and test Skill
+selection, no-match fallback, and loaded versions.
 
 ## Grow the website with the system
 
