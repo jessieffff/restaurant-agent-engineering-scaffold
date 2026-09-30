@@ -7,9 +7,9 @@ documentation structure.
 
 ## Create your private implementation repository
 
-Use this repository as a **GitHub template**, not a normal fork. A repository
-created from the public template can be private, while a normal fork of a
-public repository remains public.
+Use **GitHub's template flow** to create your private implementation
+repository from this public foundation. A standard fork of a public
+repository keeps public visibility.
 
 ### GitHub website
 
@@ -37,10 +37,10 @@ Requirements:
 - Docker with Docker Compose
 - GNU Make
 
-GitHub CLI authentication is needed for guarded merging. Ollama is needed when
-you reach the local model gateway. `make doctor` reports both as later
-requirements without blocking the initial setup; follow your course schedule
-for their exact session.
+GitHub CLI authentication supports guarded merging. Ollama supports the
+local model gateway. `make doctor` reports both as later milestones while
+the initial setup proceeds with its core requirements; follow your course
+schedule for their exact session.
 
 Prepare the local environment:
 
@@ -67,9 +67,9 @@ Open:
 - Readiness: <http://127.0.0.1:8000/health/ready>
 
 The website presents a fictional restaurant's menu, hours, reservation form,
-and Ask Juniper chat interface. Reservation submission and chat sending remain
-inactive until you connect the corresponding backend and Agent workflows.
-Neither control returns a simulated booking or a scripted Agent reply.
+and Ask Juniper chat interface. Reservation submission and chat sending
+activate as you connect the corresponding backend and Agent workflows;
+the starter shows their current availability honestly.
 
 Start the local service stack:
 
@@ -88,8 +88,8 @@ Local services:
 | RabbitMQ AMQP | `127.0.0.1:5672` |
 | RabbitMQ management | <http://127.0.0.1:15672> |
 
-The credentials in `.env.example` are local-development placeholders only.
-Do not reuse them outside the local environment.
+The credentials in `.env.example` are local-development placeholders. Use
+separately managed credentials in other environments.
 
 ## What is included
 
@@ -114,7 +114,7 @@ Do not reuse them outside the local environment.
 | Foundation | Purpose |
 |---|---|
 | Runnable FastAPI service | Verifies the Python environment and provides the first executable vertical slice |
-| Restaurant website starter | Makes the final customer journey visible from day one without implementing Agent or booking behavior for you |
+| Restaurant website starter | Shows the customer journey from day one; Agent and booking features are your course deliverables |
 | Quality checks and CI | Establishes one repeatable lint, type, test, and evidence workflow |
 | Local data services | Provides the PostgreSQL, vector, cache, and messaging systems used across later sessions |
 | GitHub templates and merge guard | Standardizes task delivery and provides a zero-cost controlled merge path |
@@ -160,14 +160,15 @@ Do not reuse them outside the local environment.
 └── tests/                   Automated tests
 ```
 
-The template does not include completed Skills. During the course, put
-`reservation`, `restaurant-policy`, and `takeout` under
+During the course, you create the `reservation`, `restaurant-policy`, and
+`takeout` Skills under
 `src/restaurant_agent/agent/skills/` so they can ship with the Python
 package and container. Each Skill describes when and how to complete a task;
-it does **not** grant tool permissions or contain restaurant-specific prices
-and unreviewed policies. The Agent must use server-enforced typed tools for
-reads and writes, keep explicit confirmation for writes, and test Skill
-selection, no-match fallback, and loaded versions.
+the backend enforces tool permissions and calculates restaurant prices,
+while approved policy comes from the knowledge source. The Agent uses
+server-enforced typed tools for reads and writes, keeps explicit
+confirmation for writes, and tests Skill selection, no-match fallback, and
+loaded versions.
 
 ## Grow the website with the system
 
@@ -216,8 +217,9 @@ commit, squash-merges, and deletes the source branch.
 ## Safety
 
 - Use synthetic data only.
-- Keep unimplemented website actions inactive; never present a placeholder as
-  a completed reservation or a live Agent response.
+- Activate website actions when they connect to real services; show
+  confirmations only for completed business operations and Agent responses
+  from the running model.
 - Never commit `.env`, credentials, access tokens, private keys, or real PII.
 - Keep deterministic tests independent from hosted model availability.
 - Keep every required workflow on a zero-payment path.
