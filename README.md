@@ -1,4 +1,4 @@
-# Restaurant AI Backend Scaffold
+# Restaurant Agent Engineering Scaffold
 
 Start the Restaurant AI Agent Backend project with a working FastAPI service,
 a responsive Juniper & Stone restaurant website, automated quality checks,
@@ -24,7 +24,7 @@ public repository remains public.
 ```bash
 gh repo create YOUR_REPOSITORY_NAME \
   --private \
-  --template jessieffff/restaurant-ai-backend-scaffold \
+  --template jessieffff/restaurant-agent-engineering-scaffold \
   --clone
 ```
 
