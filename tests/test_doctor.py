@@ -42,4 +42,4 @@ def test_missing_docker_blocks_session_one(
     assert doctor.main() == 1
     output = capsys.readouterr().out
     assert "[missing] Docker daemon" in output
-    assert "Resolve missing core requirements before Session 1." in output
+    assert "Resolve missing core requirements before Session 2." in output
