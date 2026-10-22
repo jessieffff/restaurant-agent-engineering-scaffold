@@ -48,7 +48,7 @@ def main() -> int:
         print(f"[{status}] {name} (needed for {milestone})")
 
     if failed:
-        print("Resolve missing core requirements before Session 1.")
+        print("Resolve missing core requirements before Session 2.")
         return 1
 
     print("Core environment is ready.")
